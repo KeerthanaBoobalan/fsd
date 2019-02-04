@@ -14,7 +14,7 @@ public interface TaskManagerService {
 	TaskDTO addTask(TaskDTO taskDTO);
 	TaskDTO updateTask(TaskDTO taskDTO) throws TaskNotFoundException;
 	String deleteTask(Long taskId) throws TaskNotFoundException;
-	List<UserDTO> getAllUsers();
+	List<UserDTO> getAllUsers(String sort,String sortDirection);
 	UserDTO addUser(UserDTO userDTO);
 	List<ProjectDTO> getAllProjects();
 	ProjectDTO addProject(ProjectDTO projectDTO);

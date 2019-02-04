@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.task.dto.ProjectDTO;
@@ -62,8 +64,9 @@ public class TaskManagerController {
 	
 	@GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin
-	public ResponseEntity<List<UserDTO>> getAllUsers() {
-		return new ResponseEntity<List<UserDTO>>(taskManagerService.getAllUsers(), HttpStatus.OK);
+	public ResponseEntity<List<UserDTO>> getAllUsers(@RequestParam(value = "sort", required = false) String sort,
+			@RequestParam(value = "sortDirection", required = false) String sortDirection) {
+		return new ResponseEntity<List<UserDTO>>(taskManagerService.getAllUsers(sort,sortDirection), HttpStatus.OK);
 	}
 	@PostMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin

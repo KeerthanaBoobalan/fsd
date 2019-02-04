@@ -2,13 +2,26 @@ package com.fsd.task.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class TaskDTO {
 
+	@JsonProperty("taskId")	
 	private Long taskId;
+	
+	@JsonProperty("priority")	
 	private Long priority;
+	
+	@JsonProperty("taskName")	
 	private String taskName;
+	
+	@JsonProperty("startDate")	
 	private Date startDate;
+	
+	@JsonProperty("endDate")	
 	private Date endDate;
+	
+	@JsonProperty("parentTask")	
 	private String parentTask;
 
 	public Long getTaskId() {

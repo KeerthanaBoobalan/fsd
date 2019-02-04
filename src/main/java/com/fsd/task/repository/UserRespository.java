@@ -2,12 +2,13 @@ package com.fsd.task.repository;
 
 import java.util.List;
 
-import com.fsd.task.entity.UserEntity;
-
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import com.fsd.task.entity.UserEntity;
+
 @Repository
-public interface UserRespository extends JpaRepository<UserEntity, Long>  {
-	List<UserEntity> findAll();
+public interface UserRespository extends PagingAndSortingRepository<UserEntity, Long>  {
+	List<UserEntity> findAll(Sort sort);
 }

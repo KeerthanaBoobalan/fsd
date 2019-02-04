@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -93,10 +95,20 @@ public class TaskManagerServiceImpl implements TaskManagerService {
 	}
 
 	@Override
-	public List<UserDTO> getAllUsers() {
-		return userRepository.findAll().stream().map(userEntity -> convertToUserDto(userEntity)).collect(Collectors.toList());
+	public List<UserDTO> getAllUsers(String sort,String sortDirection) {
+		return userRepository.findAll(getSort(sort,sortDirection)).stream().map(userEntity -> convertToUserDto(userEntity)).collect(Collectors.toList());
 	}
 	
+	private Sort getSort(String sort,String sortDirection) {
+		if(!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(sortDirection)) {
+			if("DESC".equalsIgnoreCase(sortDirection))
+				return new Sort(Sort.Direction.DESC,sort);
+			else
+				return new Sort(Sort.Direction.ASC,sort);
+		}
+		return new Sort(Sort.Direction.ASC,"empId");
+	}
+
 	private UserDTO convertToUserDto(UserEntity addedUser) {
 		ModelMapper modelMapper = new ModelMapper();
 		UserDTO userDTO = modelMapper.map(addedUser, UserDTO.class);
