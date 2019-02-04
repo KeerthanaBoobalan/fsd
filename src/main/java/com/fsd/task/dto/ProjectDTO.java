@@ -9,6 +9,8 @@ public class ProjectDTO {
 	private Date startDate;
 	private Date endDate;
 	private Long priority;
+	private String manager;
+	
 	public Long getProjectId() {
 		return projectId;
 	}
@@ -38,6 +40,12 @@ public class ProjectDTO {
 	}
 	public void setPriority(Long priority) {
 		this.priority = priority;
+	}
+	public String getManager() {
+		return manager;
+	}
+	public void setManager(String manager) {
+		this.manager = manager;
 	}
 		
 }

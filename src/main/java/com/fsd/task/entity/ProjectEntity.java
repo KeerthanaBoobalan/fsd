@@ -1,11 +1,15 @@
 package com.fsd.task.entity;
 
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +33,10 @@ public class ProjectEntity {
 	@Column(name = "priority")
 	private Long priority;
 
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "project_id",referencedColumnName = "proj_id")
+	private UserEntity userEntity;
+	
 	public Long getProjectId() {
 		return projectId;
 	}
@@ -67,6 +75,14 @@ public class ProjectEntity {
 
 	public void setPriority(Long priority) {
 		this.priority = priority;
+	}
+
+	public UserEntity getUserEntity() {
+		return userEntity;
+	}
+
+	public void setUserEntity(UserEntity userEntity) {
+		this.userEntity = userEntity;
 	}
 	
 	

@@ -143,6 +143,10 @@ public class TaskManagerServiceImpl implements TaskManagerService {
 	private ProjectDTO convertToProjectDto(ProjectEntity addedProject) {
 		ModelMapper modelMapper = new ModelMapper();
 		ProjectDTO projectDTO = modelMapper.map(addedProject, ProjectDTO.class);
+		UserEntity userEntity = userRepository.findByProjId(projectDTO.getProjectId());
+		if(null != userEntity) {
+			projectDTO.setManager(userEntity.getEmpId());
+		}
 		return projectDTO;
 	}
 
@@ -153,6 +157,14 @@ public class TaskManagerServiceImpl implements TaskManagerService {
 		project.setEndDate(projectDTO.getEndDate());
 		
 		ProjectEntity addedProject = projectRepository.save(project);
+		
+		if(!StringUtils.isEmpty(projectDTO.getManager())) {
+			UserEntity userEntity = userRepository.findByEmpIdIgnoreCase(projectDTO.getManager());
+			if(null != userEntity) {
+				userEntity.setProjId(project.getProjectId());
+				userRepository.save(userEntity);
+			}
+		}
 		return convertToProjectDto(addedProject);
 	}
 }

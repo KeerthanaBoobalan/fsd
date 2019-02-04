@@ -19,12 +19,6 @@ public class UserEntity {
 	@Column(name = "first_name")
 	private String firstName;
 
-	/*
-	 * @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	 * 
-	 * @JoinColumn(name = "parent_id") private ParentTask parentTask;
-	 */
-	
 	@Column(name = "last_name")
 	private String lastName;
 	
