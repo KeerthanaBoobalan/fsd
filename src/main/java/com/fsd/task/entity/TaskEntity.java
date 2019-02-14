@@ -28,6 +28,10 @@ public class TaskEntity {
 	@JoinColumn(name = "parent_id")
 	private ParentTask parentTask;
 	
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinColumn(name = "project_id", insertable = false, updatable = false)
+	private ProjectEntity projectEntity;
+	
 	@Column(name = "task_name")
 	private String taskName;
 	
@@ -36,6 +40,12 @@ public class TaskEntity {
 	
 	@Column(name = "end_date")
 	private Date endDate;
+	
+	@Column(name = "project_id")
+	private Long projectId;
+	
+	@Column(name = "parent_flag")
+	private char parent;
 	
 	public Long getTaskId() {
 		return taskId;
@@ -84,4 +94,29 @@ public class TaskEntity {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
+	public Long getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(Long projectId) {
+		this.projectId = projectId;
+	}
+
+	public char getParent() {
+		return parent;
+	}
+
+	public void setParent(char parent) {
+		this.parent = parent;
+	}
+
+	public ProjectEntity getProjectEntity() {
+		return projectEntity;
+	}
+
+	public void setProjectEntity(ProjectEntity projectEntity) {
+		this.projectEntity = projectEntity;
+	}
+
 }

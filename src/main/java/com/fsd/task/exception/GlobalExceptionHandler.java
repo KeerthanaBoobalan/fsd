@@ -20,8 +20,20 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(TaskNotFoundException.class)
-	public ResponseEntity<?> handleValidationException(TaskNotFoundException taskNotFoundException, WebRequest request){
+	public ResponseEntity<?> handleTaskNotFoundException(TaskNotFoundException taskNotFoundException, WebRequest request){
         ErrorDetails errorDetails = new ErrorDetails(new Date(), taskNotFoundException.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(errorDetails,HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(UserNotFoundException.class)
+	public ResponseEntity<?> handleUserNotFoundExceptionException(UserNotFoundException userNotFoundException, WebRequest request){
+        ErrorDetails errorDetails = new ErrorDetails(new Date(), userNotFoundException.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(errorDetails,HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(ProjectNotFoundException.class)
+	public ResponseEntity<?> handleProjectNotFoundException(ProjectNotFoundException projectNotFoundException, WebRequest request){
+        ErrorDetails errorDetails = new ErrorDetails(new Date(), projectNotFoundException.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails,HttpStatus.NOT_FOUND);
 	}
 }

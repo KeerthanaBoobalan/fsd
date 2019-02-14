@@ -1,6 +1,8 @@
 package com.fsd.task.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,6 +39,10 @@ public class ProjectEntity {
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "project_id",referencedColumnName = "proj_id")
 	private UserEntity userEntity;
+	
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "project_id")
+	private List<TaskEntity> tasks = new ArrayList<>();
 	
 	public Long getProjectId() {
 		return projectId;
@@ -84,6 +91,12 @@ public class ProjectEntity {
 	public void setUserEntity(UserEntity userEntity) {
 		this.userEntity = userEntity;
 	}
-	
-	
+
+	public List<TaskEntity> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<TaskEntity> tasks) {
+		this.tasks = tasks;
+	}	
 }

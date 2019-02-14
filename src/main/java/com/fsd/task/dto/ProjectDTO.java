@@ -10,6 +10,7 @@ public class ProjectDTO {
 	private Date endDate;
 	private Long priority;
 	private String manager;
+	private int noOfTasks;
 	
 	public Long getProjectId() {
 		return projectId;
@@ -46,6 +47,12 @@ public class ProjectDTO {
 	}
 	public void setManager(String manager) {
 		this.manager = manager;
+	}
+	public int getNoOfTasks() {
+		return noOfTasks;
+	}
+	public void setNoOfTasks(int noOfTasks) {
+		this.noOfTasks = noOfTasks;
 	}
 		
 }

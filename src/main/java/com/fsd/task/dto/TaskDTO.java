@@ -23,7 +23,19 @@ public class TaskDTO {
 	
 	@JsonProperty("parentTask")	
 	private String parentTask;
-
+	
+	@JsonProperty("user")	
+	private String user;
+	
+	@JsonProperty("projectId")	
+	private Long projectId;
+	
+	@JsonProperty("projectName")	
+	private String projectName;
+	
+	@JsonProperty("parentFlag")	
+	private Boolean parentFlag;
+	
 	public Long getTaskId() {
 		return taskId;
 	}
@@ -59,5 +71,32 @@ public class TaskDTO {
 	}
 	public void setParentTask(String parentTask) {
 		this.parentTask = parentTask;
+	}
+	public String getUser() {
+		return user;
+	}
+	public void setUser(String user) {
+		this.user = user;
+	}
+	public Long getProjectId() {
+		return projectId;
+	}
+	public void setProjectId(Long projectId) {
+		this.projectId = projectId;
+	}
+	public Boolean isParentFlag() {
+		return parentFlag;
+	}
+	public void setParentFlag(Boolean parentFlag) {
+		this.parentFlag = parentFlag;
+	}
+	public String getProjectName() {
+		return projectName;
+	}
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+	public Boolean getParentFlag() {
+		return parentFlag;
 	}	
 }
